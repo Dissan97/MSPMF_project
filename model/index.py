@@ -1,5 +1,6 @@
 import pandas as pd
 from pandas import DataFrame
+from model.names import IndexMeta as im
 
 
 class Index:
@@ -21,5 +22,12 @@ class Index:
     def __repr__(self):
         return self.__str__()
 
+    def get_df_by_name(self, col_name=im.ADJUSTED_CLOSE) -> pd.DataFrame | None:
 
-
+        if col_name in self.df.columns:
+            return self.df[col_name]
+        elif col_name in self.daily_info.columns:
+            return self.daily_info[col_name]
+        elif col_name in self.volatility.columns:
+            return self.volatility[col_name]
+        return None

@@ -1,6 +1,7 @@
 {
   "indexes": {
     "FTSE MIB": "FTSEMIB.MI",
+    "London Stock Exchange": "LSEG.L",
     "Dow Jones": "%5EDJI",
     "NASDAQ": "%5EIXIC",
     "Nikkei 225": "%5EN225",

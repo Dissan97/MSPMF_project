@@ -6,5 +6,19 @@
     "NASDAQ": "%5EIXIC",
     "Nikkei 225": "%5EN225",
     "HANG SENG INDEX": "%5EHSI"
-  }
+  },
+ "local_cache": {
+    "FTSE MIB": "FTSE_MIB-TimeSeries.csv",
+    "London Stock Exchange": "London_Stock_Exchange-TimeSeries.csv", 
+    "Dow Jones": "Dow_Jones-TimeSeries.csv",
+    "NASDAQ": "NASDAQ-TimeSeries.csv",
+    "Nikkei 225": "Nikkei_225-TimeSeries.csv",
+    "HANG SENG INDEX": "HANG_SENG_INDEX-TimeSeries.csv"
+ }
 }
+
+
+
+
+
+

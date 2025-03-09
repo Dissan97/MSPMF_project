@@ -9,7 +9,7 @@ dcc_garch_fit <- function(r_rets, n_days = 5, model_type = "GARCH", dist_type = 
     if (any(is.na(r_rets))) stop("Errore: Il dataset has NA.")
     
     univariate_spec <- ugarchspec(
-        mean.model = list(armaOrder = c(1,1)),
+        mean.model = list(armaOrder = c(3,3)),
         variance.model = list(model = "fGARCH", garchOrder = c(1,1), submodel = model_type),
         distribution.model = dist_type
     )
@@ -50,6 +50,8 @@ dcc_garch_fit <- function(r_rets, n_days = 5, model_type = "GARCH", dist_type = 
     write.csv(sigma(dcc_fit), "./temp/sigma.csv")
     write.csv(coef(dcc_fit), "./temp/coef.csv")
     write.csv(residuals_matrix / sigma(dcc_fit), "./temp/std_residuals.csv")
+    write.csv(sigma(forecasts), "./temp/forecast_sigma.csv")
+    write.csv(fitted(forecasts), "./temp/forecast_fitted.csv")
     
     # Output strutturato
     return(list(
@@ -61,3 +63,22 @@ dcc_garch_fit <- function(r_rets, n_days = 5, model_type = "GARCH", dist_type = 
 }
 
 
+go_garch_fit <- function(r_rets, n_days = 5, model_type = "GARCH", dist_type = "ged") {
+
+    univariate_spec <- ugarchspec(
+        mean.model = list(armaOrder = c(3,3)),
+        variance.model = list(model = "fGARCH", garchOrder = c(1,1), submodel = model_type),
+        distribution.model = dist_type
+    )
+    
+    spec = gogarchspec(mean.model = list(demean = "constant"),
+    variance.model = list(model = "fGARCH", garchOrder = c(1,1), submodel = model_type),
+    distribution.model =  "manig",ica = "fastica")
+    fit = gogarchfit(spec = spec, data = r_rets, gfun = "tanh")
+    # The likelihood of the model
+    
+
+    show(likelihood(fit))
+    show(fit)
+    write.csv(residuals(fit) / sigma(fit), "./temp/std_residuals.csv")
+}

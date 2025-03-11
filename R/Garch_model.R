@@ -1,7 +1,7 @@
 library(rugarch)
 
 get_garch_best_models <- function(returns, f_horizon, n_simulations = 1000) {
-    distributions <- c("std", "ged")#, "snorm", "sstd")
+    distributions <- c("std")#, "ged", "snorm", "sstd")
     
     best_shibata <- -Inf
     ml <- -Inf
